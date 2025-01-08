@@ -1,281 +1,403 @@
 import 'package:flutter/material.dart';
-
-class FacebookApp extends StatelessWidget {
-  const FacebookApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            'Facebook',
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[800],
-            ),
-          ),
-          actions: [
-            Icon(Icons.add_circle_rounded, color: Colors.black),
-            SizedBox(width: 20),
-            Icon(Icons.search, color: Colors.black),
-            SizedBox(width: 20),
-            Icon(Icons.message, color: Colors.black),
-            SizedBox(width: 20),
-          ],
-        ),
-        body: ListView(
-          children: [
-            // Post Input Section
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.home_filled, color: Colors.blueAccent),
-                      SizedBox(width: 20),
-                      Icon(Icons.ondemand_video_sharp, color: Colors.black),
-                      SizedBox(width: 20),
-                      Icon(Icons.group, color: Colors.black),
-                      SizedBox(width: 20),
-                      Icon(Icons.card_giftcard_outlined, color: Colors.black),
-                      SizedBox(width: 20),
-                      Icon(Icons.notifications_none, color: Colors.black),
-                      SizedBox(width: 20),
-                      Icon(Icons.menu, color: Colors.black),
-
-                    ],
-                  ),
-                  Divider(thickness: 3),
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage('f1.JPG'),
-                      ),
-                      SizedBox(width: 15),
-                      Expanded(
-                        child: Container(
-                          height: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.black12),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                            child: Text(
-                              "What's on your mind?",
-                              style: TextStyle(color: Colors.black54),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      Icon(Icons.photo_album_outlined, color: Colors.green),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(thickness: 3),
-
-            // Horizontal Stories Section
-            SizedBox(
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  StoryCard(
-                    containerImage: 'Profile.jpeg',
-                    avatarImage: 'assets/summer vibes.jpg',
-                    name: 'Sharjeel Ahmmad',
-                  ),
-                  StoryCard(
-                    containerImage: 'assets/moiz.jpeg',
-                    avatarImage: 'assets/moiz.jpeg',
-                    name: 'Abdul Moiz',
-                  ),
-                  StoryCard(
-                    containerImage: 'assets/rehan.jpeg',
-                    avatarImage: 'assets/rehan.jpeg',
-                    name: 'Rehan Marwat',
-                  ),
-                  StoryCard(
-                    containerImage: 'assets/asif.jpeg',
-                    avatarImage: 'assets/summer vibes.jpg',
-                    name: 'Asif khan',
-                  ),
-                ],
-              ),
-            ),
-            Divider(thickness: 3),
-
-            // Post Section
-            PostCard(
-              userName: 'Lassani Food Point',
-              userImage: 'assets/moiz.jpeg',
-              postText: 'Summer vibes!',
-              postImage: 'assets/food-app.jpg',
-              likes: '210',
-              comments: '45',
-            ),
-            PostCard(
-              userName: 'Rehan Khan',
-              userImage: 'assets/rehan.jpeg',
-              postText: 'Amazing Fashion Dress!',
-              postImage: 'assets/fashionmen.jpg',
-              likes: '2k',
-              comments: '899',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class StoryCard extends StatelessWidget {
-  final String containerImage;
-  final String avatarImage;
-  final String name;
-
-  const StoryCard({
-    Key? key,
-    required this.containerImage,
-    required this.avatarImage,
-    required this.name,
-  }) : super(key: key);
+class Whatsapphomescreen extends StatelessWidget {
+  const Whatsapphomescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 180,
-        width: 130,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(containerImage), // Background image for the container
-            fit: BoxFit.cover,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('WhatsApp',style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.lightGreenAccent[700],
+        actions: [
+          IconButton(color: Colors.white,
+            icon: Icon(Icons.search),
+            onPressed: () {},
           ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Stack(
-          children: [
-            // Dark overlay for text readability
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // CircleAvatar with a separate image
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(avatarImage), // Avatar image
-                  ),
-                ),
-                // Display name
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    name,
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PostCard extends StatelessWidget {
-  final String userName;
-  final String userImage;
-  final String postText;
-  final String postImage;
-  final String likes;
-  final String comments;
-
-  const PostCard({
-    Key? key,
-    required this.userName,
-    required this.userImage,
-    required this.postText,
-    required this.postImage,
-    required this.likes,
-    required this.comments,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage(userImage),
-              ),
-              SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    userName,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Text('8m ago'),
-                      SizedBox(width: 5),
-                      Icon(Icons.public, size: 16),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Text(postText),
-          SizedBox(height: 10),
-          Container(
-            height: 350,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(postImage),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Icon(Icons.favorite_outline),
-              SizedBox(width: 5),
-              Text(likes),
-              SizedBox(width: 20),
-              Icon(Icons.chat_bubble_outline),
-              SizedBox(width: 5),
-              Text(comments),
-            ],
+          IconButton(color: Colors.white,
+            icon: Icon(Icons.more_vert),
+            onPressed: () {},
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Chat 1
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    child: Text(
+                      'A',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ami',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'SALAM',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 240),
+                  Text(
+                    '8:15 AM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            // Chat 2
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.pink,
+                    child: Text(
+                      'R',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Rida Czn',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        "How r u?",
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 245),
+                  Text(
+                    '10:45 AM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            // Chat 3
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.purpleAccent,
+                    child: Text(
+                      'K',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Komal',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Hi',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 250),
+                  Text(
+                    '11:30 AM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+
+            // Chat 4
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.black,
+                    child: Text(
+                      'S',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sahar',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'kahan ho...',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 242),
+                  Text(
+                    '12:00 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.redAccent,
+                    child: Text(
+                      'A',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Aleeza',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Congratulations Dr.',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 235),
+                  Text(
+                    '1:00 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.green,
+                    child: Text(
+                      'N',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Neelum',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'typing...',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 305),
+                  Text(
+                    '1:00 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ), Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.red.shade900,
+                    child: Text(
+                      'J',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'J.',
+                        style: TextStyle(color:Colors.grey[600],fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Salar uncle',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 275),
+                  Text(
+                    '2:00 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ), Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.amberAccent,
+                    child: Text(
+                      'A',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Arisha',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Wnre hal snra?',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 250),
+                  Text(
+                    '2:45 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  // Avatar
+                  CircleAvatar(
+                    backgroundColor: Colors.deepPurpleAccent.shade100,
+                    child: Text(
+                      'M',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Mahnoor',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'Assignment kar li?',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 230),
+                  Text(
+                    '5:00 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    child: Text(
+                      'B',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  // Chat Info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Basit',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        'kidr ho',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                  // Time
+                  SizedBox(width: 205),
+                  Text(
+                    '8:45 PM',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

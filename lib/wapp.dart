@@ -70,8 +70,8 @@ class WhatsAp extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundImage: AssetImage('rehan.JPEG'),
                     ),
-                    title: Text('Rehan Internee'),
-                    subtitle: Row(children: [Icon(Icons.voice_over_off_sharp,size: 20,), Text('  On Call 1 houre 11 mints',style: TextStyle(fontSize: 12),),]),
+                    title: Text('Rehan khan'),
+                    subtitle: Row(children: [Icon(Icons.voice_over_off_sharp,size: 20,), Text('On Call 1 houre 11 mints',style: TextStyle(fontSize: 12),),]),
                     trailing: Column(
                       children: [
                         Text('9:10am', style: TextStyle(color: Colors.green)),

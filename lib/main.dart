@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:untitled/facebook.dart';
-import 'package:untitled/wapp.dart';
+import 'package:untitled/FacebookTaskeen.dart';
+import 'package:untitled/facebook.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -13,9 +14,9 @@ void main() {
      return MaterialApp(
        title: 'Flutter Demo',
 
-       home: WhatsAp(),
-       //FacebookApp(),
-       debugShowCheckedModeBanner: false
+       home: FacebookApp(),
+       debugShowCheckedModeBanner: false,
+
        // HomeScreen(),
      );
    }
